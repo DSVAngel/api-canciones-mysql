@@ -29,6 +29,7 @@ app.get('/api/status', (req, res) => {
     res.status(200).json({ status: 'OK', message: 'API funcionando correctamente' });
 });
 
+app.use(express.static(path.join(__dirname, 'public')));
 app.use((err, req, res, next) => {
     console.error('Error:', err);
     res.status(500).json({ error: err.message || 'Error interno del servidor' });
@@ -37,5 +38,6 @@ app.use((err, req, res, next) => {
 app.use((req, res) => {
     res.status(404).json({ error: 'Ruta no encontrada' });
 });
+
 
 module.exports = app;
